@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="style--contactanos.css">
 </head>
 <body>
 
@@ -37,14 +38,29 @@
 </header>
 
 
-<div class="contact_form">
+<main class="main__form">
 
-</div>
-<!-- 
+    <section class="main__section">
+        <div class="section__title">
+            <h1 class="section__item title-shadow">Contactanos</h1>
+        </div>
+    </section>
+    <form class="form__container" method="posts">
+        <div class="form__1">
+            <input type="text" id="name" name="name" placeholder="   Alguien Apellido"  required>
+            <input type="text" id="tel" name="tel" placeholder="   55 xxxx xxxx"  required>
+         </div>
+         
+            <input type="email" id="email" name="email" placeholder="   alguien@example.com" required>
+        
+    <textarea id="message" name="message" placeholder="    Mensaje" required></textarea>
+    <input type="submit" name='enviar' onclick ='validar()' id="button">
+    </form>
+</main>
+
 <?php
     include('php_contactanos.php');
   ?>
- -->
 
 </body>
 
