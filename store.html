@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="shortcut icon" href="logo.jpg" />
+    <link rel="stylesheet" href="style--store.css">
+    <script src="https://kit.fontawesome.com/f0f6b106ff.js" crossorigin="anonymous"></script>
+</head>
+<body>
+        <!-- Nav Section -->
+        <header class="header">
+            <nav class="header__nav">
+                <div class="nav__logo-container">
+                    <img src="looogo.jpg" alt="Logo">
+                </div>
+        
+                <div class="nav__ul-container">
+                    <ul class="nav__list">
+                       <li class="nav__item">
+                            <a href="index.html" class="nav__link">Inicio</a>
+                       </li>
+                       <li class="nav__item">
+                             <a href="about-us.html" class="nav__link">Acerca de Nosotros</a>
+                       </li>
+                       <li class="nav__item">
+                             <a href="contactanos.php" class="nav__link">Contactanos</a>
+                       </li>
+                       <li class="nav__item">
+                             <a href="store.html" class="nav__link">Cecy-shop</a>
+                       </li>
+
+                        <a class="cart-toggle" onclick="renderCart()">Mostrar Carrito</a>
+                        <div class="cart-container">
+                            <h2>Carrito de Compras</h2>
+                            <button class="cart-close">Cerrar Carrito</button>
+                            <ul id="cart-list"></ul>
+                            <button id="generate-ticket">Generar Ticket de Compra</button>
+                        </div>
+ 
+                     </li>
+                     </ul>
+                </div>
+        </nav>
+        </header>
+    <!-- main section -->
+     <main class="main">
+        <div class="title item__text">
+            <p class="txt--logo"> <span class="cecy">Cecy-</span> 
+                <span class="shop">  <span class="flicker1">S</span><span class="flicker2">h</span><span class="flicker3">o</span><span class="flicker2">p</span></span> 
+            </p>
+    </div>
+        <div class="grid">
+            <div class="items">
+                <img src="img1.png" alt="imagen1">
+                <div class="info">
+                    <h3>Corazon</h3>
+                    <p>Informacion adicional</p>
+                    <div class="precio">
+                        <p>$330</p>
+                        <p>$280</p>
+                    </div>
+                    <button>Agregar al Carrito</button>
+                </div>
+            </div>
+            <div class="items">
+                <img src="img2 (1).png" alt="imagen1">
+                <div class="info">
+                    <h3>Colibri</h3>
+                    <p>Informacion adicional</p>
+                    <div class="precio">
+                        <p>$300</p>
+                        <p>$250</p>
+                    </div>
+                    <button>Agregar al Carrito</button>
+            </div>
+        </div>
+            <div class="items">
+                <img src="img3 (1).png" alt="imagen1">
+                <div class="info">
+                    <h3>Ángel</h3>
+                    <p>Informacion adicional</p>
+                    <div class="precio">
+                        <p>$350</p>
+                        <p>$290</p>
+                    </div>
+                    <button>Agregar al Carrito</button>
+
+            </div>
+        </div>
+            <div class="items">
+
+                <img src="buho.png" alt="imagen1">
+                <div class="info">
+                    <h3>búho</h3>
+                    <p>Informacion adicional</p>
+                    <div class="precio">
+                        <p>$280</p>
+                        <p>$200</p>
+                    </div>
+                    <button>Agregar al Carrito</button>
+
+            </div>
+        </div>
+        
+            <div class="items">
+                
+                <img src="arbol.png" alt="imagen1">
+                <div class="info">
+                    <h3>Árbol</h3>
+                    <p>Informacion adicional</p>
+                    <div class="precio">
+                        <p>$200</p>
+                        <p>$150</p>
+                    </div>
+                    <button>Agregar al Carrito</button>
+
+            </div>
+        </div>
+            <div class="items">
+
+                <img src="img6.png" alt="imagen1">
+                <div class="info">
+                    <h3>Vasija</h3>
+                    <p>Informacion adicional</p>
+                    <div class="precio">
+                        <p>$320</p>
+                        <p>$270</p>
+                    </div>
+                    <button>Agregar al Carrito</button>
+
+            </div>
+        </div>
+    </div>
+
+  
+    
+     </main>
+
+
+     <footer class="footer">
+        <p class="footer__item">Calle Santos Degollado s/n La Magdalena Atlicpac La Paz Estado de México.</p>
+        <p class="footer__date" id="horario"></p>
+    </footer>
+    
+</body>
+</html>
+
+<script>
+
+const cartToggle = document.querySelector('.cart-toggle');
+        const cartContainer = document.querySelector('.cart-container');
+        const cartClose = document.querySelector('.cart-close');
+
+        cartToggle.addEventListener('click', () => {
+            cartContainer.classList.toggle('show');
+        });
+
+        cartClose.addEventListener('click', () => {
+            cartContainer.classList.remove('show');
+        });
+
+        let cartItems = [];
+
+        const buttons = document.querySelectorAll('.items button');
+        buttons.forEach((button) => {
+            button.addEventListener('click', (e) => {
+                const item = e.target.closest('.items'); 
+                addItemToCart(item);
+            });
+        });
+
+        function addItemToCart(item) {
+            const productName = item.querySelector('h3').textContent;
+            const productPrice = parseFloat(item.querySelector('.precio p:last-child').textContent.replace('$', '')); 
+            const productImage = item.querySelector('img').src;
+
+            const existingProduct = cartItems.find(cartItem => cartItem.name === productName);
+
+            if (existingProduct) {
+                existingProduct.quantity += 1;
+            } else {
+                cartItems.push({
+                    name: productName,
+                    price: productPrice,
+                    image: productImage,
+                    quantity: 1
+                });
+            }
+
+            renderCart();
+        }
+
+        function renderCart() {
+            const cartList = document.querySelector('#cart-list');
+            cartList.innerHTML = ''; 
+
+            cartItems.forEach((cartItem) => {
+                const cartItemElement = `
+                    <li>
+                        <img src="${cartItem.image}" alt="${cartItem.name}">
+                        <span>${cartItem.name}</span>
+                        <span>${cartItem.price}</span>
+                        <span>Cantidad: ${cartItem.quantity}</span>
+                        <button class="remove-item">Eliminar</button>
+                    </li>
+                `;
+                cartList.innerHTML += cartItemElement;
+            });
+        }
+
+        const cartList = document.querySelector('#cart-list');
+        cartList.addEventListener('click', (e) => {
+            if (e.target.classList.contains('remove-item')) {
+                const itemName = e.target.closest('li').querySelector('span').textContent;
+                removeItemFromCart(itemName);
+            }
+        });
+
+        function removeItemFromCart(itemName) {
+            cartItems = cartItems.filter(cartItem => cartItem.name !== itemName);
+            renderCart();
+        }
+
+
+        function generatePurchaseTicket() {
+            const usernames = ["Juan Pérez", "María López", "Carlos Sánchez", "Ana Ramírez", "Luis Gómez"];
+            const randomUsername = usernames[Math.floor(Math.random() * usernames.length)];
+
+            const randomOrderNumber = Math.floor(100000 + Math.random() * 900000);
+
+            const addresses = [
+                "Calle Falsa 123, Ciudad de México",
+                "Av. Reforma 456, Ciudad de México",
+                "Calle Bolívar 789, Ciudad de México",
+                "Av. Insurgentes 101, Ciudad de México",
+                "Calle Juárez 202, Ciudad de México"
+            ];
+            const randomAddress = addresses[Math.floor(Math.random() * addresses.length)];
+
+            let ticket = `Nombre de usuario: ${randomUsername}\n`;
+            ticket += `Número de pedido: ${randomOrderNumber}\n`;
+            ticket += `Productos comprados:\n`;
+
+            let totalPrice = 0;
+
+            cartItems.forEach(cartItem => {
+                ticket += `- ${cartItem.name} (Cantidad: ${cartItem.quantity}) - $${(cartItem.price * cartItem.quantity).toFixed(2)}\n`;
+                totalPrice += cartItem.price * cartItem.quantity;
+            });
+
+            ticket += `\nTotal: $${totalPrice.toFixed(2)}\n`;
+            ticket += `Dirección de envío: ${randomAddress}\n`;
+
+            alert(ticket);
+        }
+
+    
+        document.querySelector('#generate-ticket').addEventListener('click', generatePurchaseTicket);
+
+
+
+</script>

@@ -1,0 +1,253 @@
+body{
+    margin: 0;
+    box-sizing: border-box;
+    background-color: #d2e17b;
+    
+}
+
+body, div, header, nav, h1, img, section, li, ul{
+    box-sizing: border-box;
+}
+
+    /* Nav Secion */
+
+.header__nav{
+    background-color: #fff;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    position: sticky;
+    top: 0;
+    box-shadow: 0 0 25px #0009;
+    padding: 8px 20px;
+}
+.nav__list{
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap ;
+    justify-content: center;
+    padding: 0;
+}
+
+.nav__logo-container{
+    max-width:15%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .nav__logo-container img{
+    width: 350px;
+    height: 50px;
+    object-fit: cover;
+  }
+  
+
+.nav__item{
+    list-style: none;
+    font-size: 1.2em;
+}
+
+.nav__logo-container,.nav__ul-container{
+    flex-grow: 10;
+    text-align: center;
+
+}
+.nav__ul-container{
+    flex-grow: 5;
+}
+
+.nav__link{
+    color: #423f32;
+    text-decoration: none;
+    display: inline-block;
+    padding: 8px 10px;
+    margin: 2px;
+    border-radius: 0;
+    transition: background-color 0.24s, border-radius 0.24s;
+
+}
+
+.nav__link:hover{
+    background-color: #4d504765;
+    border-radius: 20px;
+}
+
+.link--login{
+    background-color: #d2e17b;
+    color: #fff;
+    border-radius: 20px;
+    padding: 8px 24px;
+    margin-left: 8px;
+}
+.link--login:hover{
+    background-color: #5f6455;
+    outline: none;
+}
+
+
+/* Main Section */
+.main{
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.main__container {
+    opacity: 0.5; 
+    transform: translateY(90px); 
+    transition: opacity 1.5s, transform 1.5s; 
+    margin: 40px 0 ;
+  }
+  
+  .main__container.animated {
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+.main__section{
+    width: 80vw;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+}
+.section__title{
+   width: 100%;
+   display: flex;
+   justify-content:center;
+   align-items: center;
+   text-wrap: pretty;
+ }
+ 
+ .section__item{
+    font-size: 5.7em;
+   color: transparent;
+   -moz-text-stroke-width: 1px;
+   -webkit-text-stroke-width: 1px;
+   -moz-text-stroke-color: #000000;
+   -webkit-text-stroke-color: #ffffff;
+ }
+ 
+ .title-shadow {
+   text-shadow: 7px 7px #2C3E50;
+ }
+
+ .main__content{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    grid-template-rows: repeat(2, 1fr); 
+    gap: 1em; 
+    
+ }
+
+ .main__item-img img{
+    width: 100%;
+    height: auto;
+    border-radius: 50px;
+    box-shadow: 0 0 25px #000;
+ }
+ .main__item-img{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ }
+
+ .main__title{
+    font-size: 2em;
+    margin-bottom: 50px;
+    font-weight: bold;
+    text-align: center;
+ }
+
+ .container--separate{
+    margin-top: 150px;
+ }
+
+ .main__item{
+    text-wrap: pretty;
+    font-size: 1.7em;
+    margin-bottom: 1em;
+    margin-left: 2em;
+    text-align: center;
+    width: 70%;
+ }
+
+@media (max-width: 768px) {
+    .section__item{
+        font-size: 5em;
+    }
+
+    .main__container {
+        margin: 10px 0 ;
+      }
+    .main__content{
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        gap: 0.2em;
+     }
+
+     .main__item-img img{
+        width: 100%;
+  
+     }
+     .main__item{
+        font-size: 0.7em;
+     }
+
+     .main__title{
+        font-size: 1em;
+        margin-bottom: 0.3em;
+        margin-left: 0.6em ;
+     }
+     .container--separate{
+        margin-top: 50px;
+     }
+    
+}
+
+[id^='n']:target {
+position: relative;
+  }
+
+  [id^='n']:target::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #5f6455;
+    transform: scaleX(0);
+    transition: transform 0.3s ease-in-out;
+    animation: subrayado 3s forwards;
+}
+
+@keyframes subrayado {
+    0% {
+        transform: scaleX(0);
+    }
+    100% {
+        transform: scaleX(1);
+    }
+}
+
+[id^='n']:target::after {
+    animation: subrayado 3s forwards;
+}
+
+ .footer{
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    background-color: #333;
+    width: 100%;
+    position: relative;
+    bottom: 0;
+    color: #fff;
+    text-align: center;
+    font-size: 1em;
+}
+
+@media (max-width: 768px) {
+    .footer{
+        font-size: 0.6em;
+    }
+}
